@@ -8,6 +8,9 @@ public class PressureMeter : MonoBehaviour
     private const float maxPressureAngle = 210;
     private const float minPressureAngle = -20;
 
+    public float stability; // 0 - 1
+    public bool autoPilot = true;
+
     private Transform needleTranform;
     //private Transform speedLabelTemplateTransform;
 
@@ -22,8 +25,10 @@ public class PressureMeter : MonoBehaviour
         //speedLabelTemplateTransform = transform.Find("speedLabelTemplate");
         //speedLabelTemplateTransform.gameObject.SetActive(false);
 
-        pressure = 0f;
+        pressure = 100f;
         pressureMax = 200f;
+
+        stability = 1; // stable at first
 
     }
 
@@ -31,7 +36,8 @@ public class PressureMeter : MonoBehaviour
     void Update()
     {
         HandlePlayerInput();
-        Debug.Log(needleTranform.rotation.z);
+        //Debug.Log(needleTranform.rotation.z);
+        Debug.Log(pressure);
         //pressure += 30f * Time.deltaTime;
         //if (pressure > pressureMax) pressure = pressureMax;
 
@@ -49,18 +55,78 @@ public class PressureMeter : MonoBehaviour
     }
 
     private void HandlePlayerInput() {
-        if (Input.GetKey(KeyCode.DownArrow))
+
+        if (stability == 1)
         {
-            float deceleration = 50f;
-            pressure -= deceleration * Time.deltaTime;
+            autoPilot = true;
+        }
+        else if (stability == 0) {
+            autoPilot = false;
+        }
+
+        if (85 <= pressure && pressure <= 115)
+        {
+            stability = 1;
         }
         else {
-            float acceleration = 20f;
-            pressure += acceleration * Time.deltaTime;
+            stability = 0;
         }
+
+        if (autoPilot == true) {
+            pressure = Random.Range(85f, 115f);
+        } else if (autoPilot == false) {
+            if (pressure < 85) {
+                if (Input.GetKey(KeyCode.UpArrow))
+                {
+                    float deceleration = 50f;
+                    pressure += deceleration * Time.deltaTime;
+                }
+                else
+                {
+                    float acceleration = 20f;
+                    pressure -= acceleration * Time.deltaTime;
+                }
+            }
+
+            if (pressure > 115)
+            {
+                if (Input.GetKey(KeyCode.DownArrow))
+                {
+                    float deceleration = 50f;
+                    pressure -= deceleration * Time.deltaTime;
+                }
+                else
+                {
+                    float acceleration = 20f;
+                    pressure += acceleration * Time.deltaTime;
+                }
+            }
+        }
+
+        // Control stability with keys
+
+        if (Input.GetKey(KeyCode.C))
+        {
+            stability = 1;
+        }
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            stability = 0;
+            pressure = 84;
+        }
+
+        if (Input.GetKey(KeyCode.E))
+        {
+            stability = 0;
+            pressure = 116;
+        }
+
+
 
         pressure = Mathf.Clamp(pressure, 0f, pressureMax); // to make sure it's in the right range
 
     }
+
 
 }
