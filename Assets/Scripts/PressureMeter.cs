@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class PressureMeter : MonoBehaviour
 {
-    private const float maxPressureAngle = -20;
-    private const float minPressureAngle = 210;
+    private const float maxPressureAngle = 210;
+    private const float minPressureAngle = -20;
 
     private Transform needleTranform;
     //private Transform speedLabelTemplateTransform;
@@ -31,7 +31,7 @@ public class PressureMeter : MonoBehaviour
     void Update()
     {
         HandlePlayerInput();
-
+        Debug.Log(needleTranform.rotation.z);
         //pressure += 30f * Time.deltaTime;
         //if (pressure > pressureMax) pressure = pressureMax;
 
