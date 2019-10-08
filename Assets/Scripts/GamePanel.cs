@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface Panel {
+public interface GamePanel {
     float getStability();
     void setAutoPilot(bool on);
 }

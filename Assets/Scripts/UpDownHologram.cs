@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UpDownHologram : MonoBehaviour, Panel
+public class UpDownHologram : MonoBehaviour, GamePanel
 {
     // Start is called before the first frame update
 
@@ -14,9 +14,12 @@ public class UpDownHologram : MonoBehaviour, Panel
     private GameObject dot;
 
     private bool autoPilot = true;
+    private bool autoPilotPress = false;
+
     private Vector3 initalLocation;
 
     private bool upsidedown = false;
+    private bool flipped = false;
     private float value = 0.5f;
 
     private float seed = 0;
@@ -26,16 +29,46 @@ public class UpDownHologram : MonoBehaviour, Panel
 
     private float movementRange = 1;
 
+    public Material badMaterial;
+    public Material warnMaterial;
+    private Material originalMaterial;
+
+    private Renderer rend;
+
+    private float stability;
+
+    public GameObject text;
+
     void Start()
     {
         dot = transform.GetChild(0).gameObject;
 
+        rend = GetComponent<Renderer>();
+        originalMaterial = rend.material;
+
         upsidedown = transform.lossyScale.y <= 0;
-        seed = Random.Range(-1000,1000);
+        flipped = transform.lossyScale.x <= 0;
+        seed = Random.Range(-1000, 1000);
         speedMultiplier = Random.Range(speedMultiplierRange.x, speedMultiplierRange.y);
         initalLocation = dot.transform.localPosition;
 
-        key = (KeyCode) System.Enum.Parse(typeof(KeyCode), keyChar+"");
+        key = (KeyCode)System.Enum.Parse(typeof(KeyCode), keyChar + "");
+
+        badMaterial = new Material(badMaterial);
+        warnMaterial = new Material(warnMaterial);
+        originalMaterial = new Material(originalMaterial);
+
+        TextMesh textMesh = text.GetComponent<TextMesh>();
+        textMesh.text = keyChar+"";
+        Vector3 textScale = text.transform.localScale;
+        if (flipped) {
+            textScale.x = -textScale.x;
+        } 
+        if (upsidedown) {
+            textScale.y = -textScale.y;
+        }
+        text.transform.localScale = textScale;
+        textMesh.color = new Color(5,5,5);
     }
 
     // Update is called once per frame
@@ -44,39 +77,75 @@ public class UpDownHologram : MonoBehaviour, Panel
         Vector3 position = dot.transform.localPosition;
 
         float speed = Mathf.PerlinNoise(Time.realtimeSinceStartup * noiseMultiplier, seed);
-        
+
         // clip top and bottom
-        speed = Mathf.Clamp(speed*4-1, 0, 1);
+        speed = Mathf.Clamp(speed * 4 - 1, 0, 1);
 
         speed *= speedMultiplier;
 
-        Debug.Log(speedMultiplier);
-        if (Input.GetKey(key))
+        if (autoPilot)
+        {
+            if (value > .6 && !autoPilotPress)
+            {
+                autoPilotPress = true;
+            }
+            else if (value < .4 && autoPilotPress)
+            {
+                autoPilotPress = false;
+            }
+            
+            // badMaterial.SetColor("_EmissionColor", Color.red);
+            // warnMaterial.SetColor("_EmissionColor", Color.red);
+            // originalMaterial.SetColor("_EmissionColor", Color.red);
+            badMaterial.SetFloat("_EmissiveExposureWeight", 1);
+            warnMaterial.SetFloat("_EmissiveExposureWeight", 1);
+            originalMaterial.SetFloat("_EmissiveExposureWeight", 1);
+        } else {
+            autoPilotPress = false;
+
+            badMaterial.SetFloat("_EmissiveExposureWeight", 0);
+            warnMaterial.SetFloat("_EmissiveExposureWeight", 0);
+            originalMaterial.SetFloat("_EmissiveExposureWeight", 0);
+        }
+
+
+        if ((!autoPilot && Input.GetKey(key)) || autoPilotPress)
         {
             value -= releaseMultiplier * Time.deltaTime * speedMultiplier;
         }
 
-        // button not pressed 
         value += speed * Time.deltaTime;
 
         value = Mathf.Clamp(value, 0, 1);
 
+
         // calc done
+        stability = Mathf.Abs(value - .5f);
 
-
-        if (value > .75 || value < .25) {
+        if (value > 0.875 || value < 0.125)
+        {
+            stability = 0;
+            rend.material = badMaterial;
         }
-        
-        if (upsidedown)
-            position.y = Mathf.Lerp(movementRange,-movementRange, value) + initalLocation.y;
+        else if (value > 0.75 || value < 0.25)
+        {
+            rend.material = warnMaterial;
+        }
         else
-            position.y = Mathf.Lerp(-movementRange,movementRange, value) + initalLocation.y;
+        {
+            rend.material = originalMaterial;
+        }
+
+        if (upsidedown)
+            position.y = Mathf.Lerp(movementRange, -movementRange, value) + initalLocation.y;
+        else
+            position.y = Mathf.Lerp(-movementRange, movementRange, value) + initalLocation.y;
         dot.transform.localPosition = position;
     }
 
     public float getStability()
     {
-        return 1;
+        return stability;
     }
     public void setAutoPilot(bool on)
     {
