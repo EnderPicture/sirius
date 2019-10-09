@@ -16,11 +16,12 @@ public class GameManager : MonoBehaviour
     private GamePanel hologram3Panel;
     private GamePanel hologram4Panel;
 
-
+    public GameObject text;
     public float interval = 10;
 
     void Start()
     {
+        Random.InitState(System.DateTime.Now.Millisecond);
         hologram1Panel = hologram1.GetComponent<GamePanel>();
         hologram2Panel = hologram2.GetComponent<GamePanel>();
         hologram3Panel = hologram3.GetComponent<GamePanel>();
@@ -44,5 +45,51 @@ public class GameManager : MonoBehaviour
         {
             hologram4Panel.setAutoPilot(false);
         }
+
+        float stability = (
+            hologram1Panel.getStability() +
+            hologram2Panel.getStability() +
+            hologram3Panel.getStability() +
+            hologram4Panel.getStability()) / 4;
+
+        string textBlock = "";
+
+        if (stability < .1)
+        {
+            textBlock = "░░░░░░░░░░";
+        }
+        else if (stability < .2) {
+            textBlock = "█░░░░░░░░░";
+        }
+        else if (stability < .3) {
+            textBlock = "██░░░░░░░░";
+        }
+        else if (stability < .4) {
+            textBlock = "███░░░░░░░";
+        }
+        else if (stability < .5) {
+            textBlock = "████░░░░░░";
+        }
+        else if (stability < .6) {
+            textBlock = "█████░░░░░";
+        }
+        else if (stability < .7) {
+            textBlock = "██████░░░░";
+        }
+        else if (stability < .8) {
+            textBlock = "███████░░░";
+        }
+        else if (stability < .9) {
+            textBlock = "████████░░";
+        }
+        else if (stability < 1) {
+            textBlock = "█████████░";
+        }
+        else {
+            textBlock = "██████████";
+        }
+
+        text.GetComponent<TextMesh>().text = Mathf.RoundToInt(stability*100) + "% stable\n" +textBlock;
+
     }
 }

@@ -651,9 +651,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 367e45529f141a24cb28bf483986aec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedMultiplierRange: {x: 0.05, y: 0.1}
+  speedMultiplierRange: {x: 0.05, y: 0.2}
   releaseMultiplier: 5
-  noiseMultiplier: 1
+  noiseMultiplier: 2
   keyChar: 70
   key: 0
   badMaterial: {fileID: 2100000, guid: d4171787a3166a64698969b267bc2092, type: 2}

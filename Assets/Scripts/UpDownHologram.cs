@@ -94,9 +94,6 @@ public class UpDownHologram : MonoBehaviour, GamePanel
                 autoPilotPress = false;
             }
             
-            // badMaterial.SetColor("_EmissionColor", Color.red);
-            // warnMaterial.SetColor("_EmissionColor", Color.red);
-            // originalMaterial.SetColor("_EmissionColor", Color.red);
             badMaterial.SetFloat("_EmissiveExposureWeight", 1);
             warnMaterial.SetFloat("_EmissiveExposureWeight", 1);
             originalMaterial.SetFloat("_EmissiveExposureWeight", 1);
@@ -120,7 +117,7 @@ public class UpDownHologram : MonoBehaviour, GamePanel
 
 
         // calc done
-        stability = Mathf.Abs(value - .5f);
+        stability = 1-Mathf.Abs(value - .5f);
 
         if (value > 0.875 || value < 0.125)
         {
