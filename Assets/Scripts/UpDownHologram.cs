@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class UpDownHologram : MonoBehaviour, GamePanel
 {
@@ -58,8 +59,8 @@ public class UpDownHologram : MonoBehaviour, GamePanel
         warnMaterial = new Material(warnMaterial);
         originalMaterial = new Material(originalMaterial);
 
-        TextMesh textMesh = text.GetComponent<TextMesh>();
-        textMesh.text = keyChar+"";
+        TextMeshPro textMeshPro = text.GetComponent<TextMeshPro>();
+        textMeshPro.SetText(keyChar+"");
         Vector3 textScale = text.transform.localScale;
         if (flipped) {
             textScale.x = -textScale.x;
@@ -68,7 +69,6 @@ public class UpDownHologram : MonoBehaviour, GamePanel
             textScale.y = -textScale.y;
         }
         text.transform.localScale = textScale;
-        textMesh.color = new Color(5,5,5);
     }
 
     // Update is called once per frame
