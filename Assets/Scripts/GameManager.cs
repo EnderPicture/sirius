@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-
     public GameObject hologram1;
     public GameObject hologram2;
     public GameObject hologram3;
@@ -16,8 +14,16 @@ public class GameManager : MonoBehaviour
     private GamePanel hologram3Panel;
     private GamePanel hologram4Panel;
 
+    public GameObject fireBallHologram;
+    private CorePanel fireBallPanel;
+
     public GameObject text;
     public float interval = 10;
+
+    void Awake () {
+        QualitySettings.vSyncCount = 0;  // VSync must be disabled
+        Application.targetFrameRate = 30;
+    }
 
     void Start()
     {
@@ -26,6 +32,8 @@ public class GameManager : MonoBehaviour
         hologram2Panel = hologram2.GetComponent<GamePanel>();
         hologram3Panel = hologram3.GetComponent<GamePanel>();
         hologram4Panel = hologram4.GetComponent<GamePanel>();
+
+        fireBallPanel = fireBallHologram.GetComponent<CorePanel>();
 
         hologram1Panel.setAutoPilot(false);
     }
@@ -51,6 +59,8 @@ public class GameManager : MonoBehaviour
             hologram2Panel.getStability() +
             hologram3Panel.getStability() +
             hologram4Panel.getStability()) / 4;
+        
+        fireBallPanel.stability = stability;
 
         string textBlock = "";
 

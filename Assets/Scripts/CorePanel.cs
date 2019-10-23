@@ -11,6 +11,8 @@ public class CorePanel : MonoBehaviour
 
     public Vector2 axis;
 
+    public float stability;
+
     private VisualEffect vfx;
  
     // Start is called before the first frame update
@@ -23,6 +25,7 @@ public class CorePanel : MonoBehaviour
     void Update()
     {
         angle += speed * Time.deltaTime;
+        vfx.SetFloat("Stability", stability);
         vfx.SetFloat("Sweep Angle", angle);
         vfx.SetVector3("Projection Point", projectionPoint.transform.position);
         transform.rotation = Quaternion.Euler(axis.x, 0, axis.y);
