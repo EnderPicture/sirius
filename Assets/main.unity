@@ -131,7 +131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5242461}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: CoreModule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 58321252}
   - component: {fileID: 58321251}
   - component: {fileID: 58321250}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -655,8 +655,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   volumeAnchorOverride: {fileID: 0}
-  antialiasing: 1
-  SMAAQuality: 0
+  antialiasing: 3
+  SMAAQuality: 2
   dithering: 1
   stopNaNs: 0
   physicalParameters:
@@ -1039,6 +1039,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WackHolograms
       objectReference: {fileID: 0}
+    - target: {fileID: 7888519153987464183, guid: ccf76994f3f328646af1728f3bb436aa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7888519153987464180, guid: ccf76994f3f328646af1728f3bb436aa,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1092,6 +1097,46 @@ PrefabInstance:
     - target: {fileID: 7888519153987464180, guid: ccf76994f3f328646af1728f3bb436aa,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7722530594735667053, guid: ccf76994f3f328646af1728f3bb436aa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6036928372042687579, guid: ccf76994f3f328646af1728f3bb436aa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1157719948180422471, guid: ccf76994f3f328646af1728f3bb436aa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272321741178101007, guid: ccf76994f3f328646af1728f3bb436aa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4913825222573414312, guid: ccf76994f3f328646af1728f3bb436aa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3723861233119706324, guid: ccf76994f3f328646af1728f3bb436aa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8098126867399855352, guid: ccf76994f3f328646af1728f3bb436aa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5865495263707624518, guid: ccf76994f3f328646af1728f3bb436aa,
+        type: 3}
+      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -5054,7 +5099,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1613607500}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Holograms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5089,7 +5134,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1624434044}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Projection Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5124,7 +5169,7 @@ GameObject:
   - component: {fileID: 1746340648}
   - component: {fileID: 1746340647}
   - component: {fileID: 1746340646}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: CoreHologram
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5263,7 +5308,7 @@ GameObject:
   - component: {fileID: 1775157334}
   - component: {fileID: 1775157333}
   - component: {fileID: 1775157332}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5428,7 +5473,7 @@ GameObject:
   - component: {fileID: 2057119544}
   - component: {fileID: 2057119543}
   - component: {fileID: 2057119542}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cylinder (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5537,6 +5582,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: SideHolograms
       objectReference: {fileID: 0}
+    - target: {fileID: 6352130616911248066, guid: ef744a95b0baf524d8688119f6b60491,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4620170143044567625, guid: ef744a95b0baf524d8688119f6b60491,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1434839700142883618, guid: ef744a95b0baf524d8688119f6b60491,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8547873156918488144, guid: ef744a95b0baf524d8688119f6b60491,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6352130616645782585, guid: ef744a95b0baf524d8688119f6b60491,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8532598767984074824, guid: ef744a95b0baf524d8688119f6b60491,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5606,6 +5676,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.48069578
+      objectReference: {fileID: 0}
+    - target: {fileID: 2856640660460530716, guid: ef744a95b0baf524d8688119f6b60491,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4584025516757508716, guid: ef744a95b0baf524d8688119f6b60491,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 658576641577503861, guid: ef744a95b0baf524d8688119f6b60491,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7812071575892845319, guid: ef744a95b0baf524d8688119f6b60491,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6480956578816950567, guid: ef744a95b0baf524d8688119f6b60491,
         type: 3}
